@@ -4,7 +4,7 @@
             <div class="header-left">
               <a href="index.html" class="logo">
                 <img src="assets/img/logo1.png" width="40" height="40" alt="" />
-                <span class="text-uppercase">Preschool</span>
+                <span class="text-uppercase">EMONG</span>
               </a>
             </div>
             <ul class="sidebar-ul">
@@ -19,6 +19,12 @@
                 <a href="products.php">
                     <img src="assets/img/sidebar/icon-14.png" alt="icon" />
                     <span>Products</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.php">
+                    <img src="assets/img/sidebar/icon-14.png" alt="icon" />
+                    <span>Reports</span>
                 </a>
               </li>
               <!-- <li class="submenu">

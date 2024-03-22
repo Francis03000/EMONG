@@ -22,41 +22,55 @@
                 </div>
                 <div class="card-body">
                     <div class="row" >
-                        <div class="col" >
-                             <form id="modalMainForm">
-                                <input type="hidden" id="method" name="update">
-                                <input type="hidden" name="id" id="id">
+                        <div class="col-4" >
+                             <form id="mainForm">
+                                <input type="hidden" id="method" name="addNew">
+                                <input type="hidden" name="product_id" id="product_id">
                                 <h2>Add Product</h2>
                                 <div class="form-group">
                                     <label class="col-form-label">Product Name</label>
-                                    <input type="text" class="form-control" id="display_name" name="display_name"
-                                        placeholder="Add Role" style="border-color: #404040">
+                                    <input type="text" class="form-control" id="product_name" name="product_name"
+                                        placeholder="Product Name" style="border-color: #404040">
                                 </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-form-label">Item Per Plantsa</label>
+                                    <input type="number" class="form-control" id="item_per_plantsa" name="item_per_plantsa"
+                                        placeholder="Product Price" style="border-color: #404040">
+                                </div>
+                                
                                 <div class="form-group">
                                     <label class="col-form-label">Product Price</label>
-                                    <input type="number" class="form-control" id="display_name" name="display_name"
-                                        placeholder="Add Role" style="border-color: #404040">
+                                    <input type="number" class="form-control" id="product_price" name="product_price"
+                                        placeholder="Product Price" style="border-color: #404040">
                                 </div>
 
                                 
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                                    <button type="button" id="btn-mul" name="addNew" class="btn btn-primary">Add</button>
+
+                                
+                                <button type="button" class="btn btn-secondary" id="clr-btn" name="clrButton">Clear</button>
+                                <button type="button" id="btn-mul" name="addNew" class="btn btn-primary">Add</button>
+                                <button type="button" id="update-btn" name="update" class="btn btn-primary">Update</button>
+
                                 </form> 
                         </div> 
-                         <div class="col" >
-                         <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-success " id="data_table">
-                            <thead class=" bg-green">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Roles</th>
+                         <div class="col-8" >
+                            <div class="table-responsive">
+                                <table class=" table table-bordered table-striped table-success " id="data_table">
+                                    <thead class=" bg-green">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Product Name</th>
+                                            <th scope="col">Item Per Plantsa</th>
+                                            <th scope="col">Product Price</th>
 
-                                    <th scope="col" colspan="3">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bamsmsTable"></tbody>
-                        </table>
-                    </div>
+
+                                            <th scope="col" colspan="3">Product Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productsTable"></tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     
@@ -65,5 +79,5 @@
         </div>
     </div>
 </div>
-<!-- <script src="js/roles.js"></script> -->
+<script src="js/products.js"></script>
 <?php include('layouts/footer.php'); ?>
