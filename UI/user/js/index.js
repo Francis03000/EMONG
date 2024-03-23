@@ -41,4 +41,20 @@ $(document).ready(function () {
   function update(name) {
     alert(name);
   }
+
+  $(".denomination").on("input", function () {
+    updateAmounts();
+  });
+
+  function updateAmounts() {
+    var totalAmount = 0;
+    $(".denomination").each(function () {
+      var pcs = parseInt($(this).val());
+      var denomination = parseFloat($(this).closest("tr").data("denomination"));
+      var amount = pcs * denomination;
+      $(this).closest("tr").find(".amount").text(amount.toFixed(2));
+      totalAmount += amount;
+    });
+    $(".total-amount").text(totalAmount.toFixed(2));
+  }
 });

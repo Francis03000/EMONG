@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="row d-none" id="sales_contain">
+            <div class="row " id="sales_contain">
                 <!-- <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
                     <div class="dash-widget dash-widget5">
                         <div class="dash-widget-info text-left d-inline-block">
@@ -76,7 +76,7 @@
                         <label for="product_name" class="col-form-label col-md-4">Total Plancha</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" id="product_name" name="product_name"
-                                placeholder="Product Name">
+                                placeholder="Total Plantsa">
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@
                         <label for="item_per_plantsa" class="col-form-label col-md-4">B.O.</label>
                         <div class="col-md-8">
                             <input type="number" class="form-control" id="item_per_plantsa" name="item_per_plantsa"
-                                placeholder="Item Per Plantsa">
+                                placeholder="B.O.">
                         </div>
                     </div>
 
@@ -92,14 +92,14 @@
                         <label for="product_price" class="col-form-label col-md-4">Gas</label>
                         <div class="col-md-8">
                             <input type="number" class="form-control" id="product_price" name="product_price"
-                                placeholder="Product Price">
+                                placeholder="GAS">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="product_price" class="col-form-label col-md-4">Total</label>
+                        <label for="product_price" class="col-form-label col-md-4 font-weight-bold">Total</label>
                         <div class="col-md-8">
-                            <p>₱100</p>
+                            <p class=" font-weight-bold">₱100</p>
                         </div>
                     </div>
 
@@ -107,7 +107,7 @@
 
                     <div class="container mt-3">
                         <h2 class="text-center mb-4">DENOMINATION</h2>
-                        <table class="table">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Denomination</th>
@@ -116,56 +116,60 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr data-denomination="1000">
                                     <td>1000.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
                                 </tr>
-                                <tr>
+                                <tr data-denomination="500">
                                     <td>500.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
                                 </tr>
-                                <tr>
+                                <tr data-denomination="200">
                                     <td>200.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
                                 </tr>
-                                <tr>
+                                <tr data-denomination="100">
                                     <td>100.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
                                 </tr>
-                                <tr>
+                                <tr data-denomination="50">
                                     <td>50.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
+                                </tr>
+                                <tr data-denomination="20">
+                                    <td>20.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
+                                </tr>
+                                <tr data-denomination="10">
+                                    <td>10.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
+                                </tr>
+                                <tr data-denomination="5">
+                                    <td>5.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
+                                </tr>
+                                <tr data-denomination="1">
+                                    <td>1.00</td>
+                                    <td><input type="number" class="form-control denomination" value="0"></td>
+                                    <td class="amount">0.00</td>
                                 </tr>
 
                                 <tr>
-                                    <td>20.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
-                                </tr>
-                                <tr>
-                                    <td>10.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
-                                </tr>
-                                <tr>
-                                    <td>5.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
-                                </tr>
-                                <tr>
-                                    <td>1.00</td>
-                                    <td><input type="number" class="form-control" value="0"></td>
-                                    <td>0.00</td>
+                                    <td colspan="2" class="font-weight-bold">Total</td>
+
+                                    <td class="total-amount font-weight-bold">0.00</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
 
 
 
