@@ -36,6 +36,12 @@ $(document).ready(function () {
   }
   $("#sales_info").hide();
 
+  $(".back-button").click(function () {
+    $("#mainForm").trigger("reset");
+    $("#sales_info").hide();
+    $("#sales_contain").show();
+  });
+
   $("body").on("click", ".product-item", function (e) {
     const name = $(e.currentTarget).data("name");
     const price = $(e.currentTarget).data("price");

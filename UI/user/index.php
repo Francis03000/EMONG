@@ -86,6 +86,7 @@
                 <button class="btn btn-success back-button" onclick="goBack()">
                     <i class="fas fa-arrow-left"></i> Back
                 </button>
+
                 <form id="mainForm" class="container">
                     <h2 class="text-center my-2">SALES DETAILS</h2>
 
