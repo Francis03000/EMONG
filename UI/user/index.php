@@ -15,6 +15,20 @@
             width: 50%;
         }
     }
+
+    .back-button {
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .back-button:hover .fas {
+        color: white;
+    }
 </style>
 
 <div class="main-wrapper">
@@ -69,6 +83,9 @@
 
             </div>
             <div id="sales_info">
+                <button class="btn btn-success back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
                 <form id="mainForm" class="container">
                     <h2 class="text-center my-2">SALES DETAILS</h2>
 
@@ -99,7 +116,7 @@
                     <div class="form-group row">
                         <label for="product_price" class="col-form-label col-md-4 font-weight-bold">Total</label>
                         <div class="col-md-8">
-                            <p class=" font-weight-bold">₱100</p>
+                            <p id="totalAmount" class=" font-weight-bold"></p>
                         </div>
                     </div>
 
