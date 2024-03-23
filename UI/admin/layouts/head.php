@@ -6,7 +6,8 @@
   <title>EMONG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-  <link rel="shortcut icon" type="image/x-icon" href="assets/img/finger_logo.png">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/dash/emonglogo.jpg" class="rounded-circle">
+
 
   <link href="assets/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
@@ -28,7 +29,7 @@
   <script src="assets/js/table2excel.js"></script>
 
 
-  
+
 </head>
 
 <body>

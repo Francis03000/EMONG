@@ -19,15 +19,15 @@
                 </div>
             </li>
             <li>
-                <a href="index.html" class="mobile-logo d-md-block d-lg-none d-block"><img src="assets/img/logo1.png"
-                        alt="" width="30" height="30"></a>
+                <a href="index.html" class="mobile-logo d-md-block d-lg-none d-block"><img
+                        src="assets/img/dash/emonglogo.jpg" alt="" width="40" height="40" class="rounded-circle"></a>
             </li>
         </ul>
 
 
 
         <ul class="nav user-menu float-right">
-            
+
         </ul>
         <div class="dropdown mobile-user-menu float-right">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
