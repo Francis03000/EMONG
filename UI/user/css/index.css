@@ -1,0 +1,39 @@
+#sales_info {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 50px;
+  box-shadow: 0 4px 6px rgba(01, 0, 0, 0.1);
+}
+
+@media (min-width: 992px) {
+  #sales_info {
+    width: 50%;
+  }
+}
+
+.back-button {
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.back-button:hover .fas {
+  color: white;
+}
+
+#submit-btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  border-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#submit-btn:disabled:hover {
+  background-color: #cccccc;
+}

@@ -54,6 +54,35 @@ class DBCRUDAPI
         }
     }
 
+    public function insertReturnId($table, $para = array())
+    {
+        $table_columns = implode(',', array_keys($para));
+        $table_values = array_values($para);
+
+        $value_placeholders = implode(',', array_fill(0, count($table_values), '?'));
+
+        $sql = "INSERT INTO $table ($table_columns) VALUES ($value_placeholders)";
+
+        $stmt = $this->mysqli->prepare($sql);
+
+        if ($stmt === false) {
+            throw new Exception($this->mysqli->error);
+        }
+
+        $types = str_repeat('s', count($table_values));
+        $stmt->bind_param($types, ...$table_values);
+
+        if ($stmt->execute()) {
+            $last_inserted_id = $stmt->insert_id;
+            $stmt->close();
+            return $last_inserted_id;
+        } else {
+            $stmt->close();
+            throw new Exception($this->mysqli->error);
+        }
+    }
+
+
     public function update($table, $para = array(), $id)
     {
         $args = array();

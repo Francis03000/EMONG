@@ -12,10 +12,7 @@
                         <div class="col">
                             <h5 class="table-header-color page-title mb-0">Roles List</h5>
                         </div>
-                        <div class="col">
-                            <button style="float:right;" type="button" class="btn btn-primary" id="add-new"> <i
-                                    class="fas fa-plus"></i> Add </button>
-                        </div>
+
 
                     </div>
 
@@ -66,9 +63,7 @@
                                             <th scope="col">Product Name</th>
                                             <th scope="col">Item Per Plantsa</th>
                                             <th scope="col">Product Price</th>
-
-
-                                            <th scope="col" colspan="3">Product Price</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="productsTable"></tbody>

@@ -9,7 +9,9 @@
       </div>
       <ul class="sidebar-ul">
         <li class="menu-title">Menu</li>
-        <li class="active">
+        <li class="<?php if (basename($_SERVER['PHP_SELF']) == 'index') {
+          echo 'active';
+        } ?>">
           <a href="index.php">
             <img src="assets/img/sidebar/icon-1.png" alt="icon" />
             <span>Dashboard</span>
@@ -22,7 +24,7 @@
           </a>
         </li>
         <li>
-          <a href="products.php">
+          <a href="reports.php">
             <img src="assets/img/sidebar/icon-14.png" alt="icon" />
             <span>Reports</span>
           </a>
