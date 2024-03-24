@@ -4,11 +4,26 @@
         margin-left: 0px;
     }
 
+    .reports tbody tr,
+    th,
+    td {
+        height: 10px;
+    }
+
     .col-4 {
         padding-left: 5px;
         padding-right: 5px;
         margin-bottom: 0;
-        /* Remove bottom margin */
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid;
+    }
+
+    .form-control {
+        height: 20px;
     }
 </style>
 <div class="main-wrapper">
@@ -27,7 +42,8 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-success" id="data_table">
+                        <table class="table table-bordered table-striped reports table-striped table-success"
+                            id="data_table">
                             <thead class="bg-green">
                                 <tr>
                                     <th scope="col">#</th>
@@ -59,7 +75,7 @@
                     <div class="row">
                         <div class="col-5">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="data_table">
+                                <table class="reports" id="data_table">
                                     <p>Emong Malunggay Pandesal</p>
                                     <p>Branch Outlet: <span></span></p>
                                     <p>Sales and Production Report</p>
@@ -68,7 +84,7 @@
                         </div>
                         <div class="col-7">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="data_table">
+                                <table class="reports" id="data_table">
                                     <tr>
                                         <th>DATE</th>
                                         <td colspan="4">March 23, 2024</td>
@@ -104,7 +120,7 @@
                     </div>
                     <div>
                         <div class="table-responsive text-center">
-                            <table class="table table-bordered ">
+                            <table class="reports " style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>DELIVERIES</th>
@@ -177,11 +193,11 @@
 
                     <div class="row">
 
-                        <div class="col-4 border border-dark text-center  " style="height: 600px">
+                        <div class="col-4 border border-dark text-center  " style="height: 300px">
                             <div class="font-weight-bold d-inline-block">EMONG</div>
                         </div>
-                        <div class="col-4">
-                            <table class="table table-bordered">
+                        <div class="col-4 text-center">
+                            <table class="reports">
                                 <thead>
                                     <tr>
                                         <th>Denomination</th>
@@ -256,7 +272,7 @@
 
                                 </tbody>
                             </table>
-                            <table class="table table-bordered">
+                            <table class="reports">
                                 <thead>
                                     <tr>
                                         <th>Denomination</th>
