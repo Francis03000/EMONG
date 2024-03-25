@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2024 at 12:26 PM
+-- Generation Time: Mar 25, 2024 at 04:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `denomination` (
   `tenp` int(11) NOT NULL,
   `fivep` int(11) NOT NULL,
   `onep` int(11) NOT NULL,
-  `denomination_total` float NOT NULL,
+  `denomination_total` int(11) NOT NULL,
   `denomination_created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -48,8 +48,10 @@ CREATE TABLE `denomination` (
 --
 
 INSERT INTO `denomination` (`denomination_id`, `sales_id`, `onek`, `fiveh`, `twoh`, `oneh`, `fiftyp`, `twentyp`, `tenp`, `fivep`, `onep`, `denomination_total`, `denomination_created_at`) VALUES
-(3, 17, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1200, '2024-03-24 07:47:12'),
-(4, 18, 0, 0, 1, 0, 0, 0, 0, 0, 0, 200, '2024-03-24 07:47:33');
+(14, 28, 5, 1, 2, 0, 1, 0, 0, 0, 0, 5950, '2024-03-25 03:17:26'),
+(15, 29, 5, 1, 2, 0, 1, 0, 0, 0, 0, 5950, '2024-03-25 03:18:16'),
+(16, 30, 5, 1, 1, 1, 1, 0, 1, 1, 0, 5865, '2024-03-25 03:35:00'),
+(17, 31, 5, 1, 1, 1, 1, 0, 1, 1, 0, 5865, '2024-03-25 03:38:43');
 
 -- --------------------------------------------------------
 
@@ -70,9 +72,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `item_per_plantsa`, `product_price`, `date_created_at`) VALUES
-(1, 'REGULAR', 10, 10, '2024-03-22 15:01:53'),
+(1, 'PLAIN', 24, 5, '2024-03-22 15:01:53'),
 (6, 'SPANISH', 12, 10, '2024-03-22 16:55:12'),
-(7, 'JUMBO', 15, 10, '2024-03-22 17:19:39');
+(7, 'CHEESE', 15, 10, '2024-03-22 17:19:39'),
+(16, 'PAN DE COCO', 8, 10, '2024-03-25 02:46:49');
 
 -- --------------------------------------------------------
 
@@ -86,10 +89,10 @@ CREATE TABLE `sales` (
   `total_plantsa` int(11) NOT NULL,
   `bo` int(11) NOT NULL,
   `gas` int(11) NOT NULL,
-  `sales_total` float NOT NULL,
-  `rider_commission` float NOT NULL,
-  `owner_commission` float NOT NULL,
-  `subTotal` float NOT NULL,
+  `sales_total` int(11) NOT NULL,
+  `rider_commission` int(11) NOT NULL,
+  `owner_commission` int(11) NOT NULL,
+  `subTotal` int(11) NOT NULL,
   `sales_date_created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -98,8 +101,10 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`sales_id`, `product_id`, `total_plantsa`, `bo`, `gas`, `sales_total`, `rider_commission`, `owner_commission`, `subTotal`, `sales_date_created_at`) VALUES
-(17, 1, 12, 0, 0, 1200, 96, 84, 180, '2024-03-24 07:47:12'),
-(18, 1, 2, 0, 0, 200, 16, 14, 30, '2024-03-24 07:47:33');
+(28, 1, 50, 10, 200, 5950, 476, 416, 5057, '2024-03-25 03:17:26'),
+(29, 1, 50, 10, 200, 5950, 476, 416, 4858, '2024-03-25 03:18:16'),
+(30, 1, 50, 27, 0, 5865, 469, 411, 4985, '2024-03-25 03:35:00'),
+(31, 1, 50, 27, 200, 5865, 469, 411, 4785, '2024-03-25 03:38:43');
 
 --
 -- Indexes for dumped tables
@@ -131,19 +136,19 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `denomination`
 --
 ALTER TABLE `denomination`
-  MODIFY `denomination_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `denomination_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
