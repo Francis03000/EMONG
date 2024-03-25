@@ -46,22 +46,22 @@
                     <div class="form-group row">
                         <label for="product_name" class="col-form-label col-md-4">Total Plancha</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="total_plancha" name="total_plancha"
+                            <input type="text" class="form-control" value="0" id="total_plancha" name="total_plancha"
                                 placeholder="Total Plantsa">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="item_per_plantsa" class="col-form-label col-md-4">B.O.</label>
+                        <label for="item_per_plantsa" class="col-form-label col-md-4">B.O. (PCS)</label>
                         <div class="col-md-8">
-                            <input type="number" class="form-control" id="bo" name="bo" placeholder="B.O.">
+                            <input type="number" class="form-control" id="bo" name="bo" value="0" placeholder="B.O.">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="product_price" class="col-form-label col-md-4">Gas</label>
                         <div class="col-md-8">
-                            <input type="number" class="form-control" id="gas" name="gas" placeholder="GAS">
+                            <input type="number" class="form-control" id="gas" value="0" name="gas" placeholder="GAS">
                         </div>
                     </div>
 
@@ -69,6 +69,14 @@
                         <label for="product_price" class="col-form-label col-md-4 font-weight-bold">Total</label>
                         <div class="col-md-8">
                             <p id="totalAmount" class=" font-weight-bold"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="product_price" class="col-form-label col-md-4 font-weight-bold">Rider's
+                            Commission</label>
+                        <div class="col-md-8">
+                            <p id="rider_commission" class=" font-weight-bold"></p>
                         </div>
                     </div>
 

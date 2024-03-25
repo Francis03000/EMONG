@@ -61,16 +61,19 @@ $(document).ready(function () {
     $("#sales_info").show();
 
     total = 0;
+    rider_commission = 0;
 
     function updateTotalAmount() {
-      var totalPlancha = parseFloat($("#total_plancha").val()) || 0;
+      var totalPlancha = parseInt($("#total_plancha").val()) || 0;
       total_pcs = totalPlancha * item_per_plantsa;
-      total_pcs * price;
-      var bo = parseFloat($("#bo").val()) || 0;
-      var gas = parseFloat($("#gas").val()) || 0;
-
+      // total_pcs * price;
+      var bo = parseInt($("#bo").val()) || 0;
+      var gas = parseInt($("#gas").val()) || 0;
+      total_pcs = total_pcs - bo;
       total = total_pcs * price;
-      $("#totalAmount").text(total.toFixed(2));
+      rider_commission = total * 0.08;
+      $("#totalAmount").text(total.toFixed(0));
+      $("#rider_commission").text(rider_commission.toFixed(0));
       checkTotalMatch();
     }
     $("#total_plancha, #bo, #gas").on("input", updateTotalAmount);
@@ -93,24 +96,28 @@ $(document).ready(function () {
       pcs = Math.max(0, pcs);
       $(this).val(pcs);
 
-      var denomination = parseFloat($(this).closest("tr").data("denomination"));
+      var denomination = parseInt($(this).closest("tr").data("denomination"));
       var amount = pcs * denomination;
-      $(this).closest("tr").find(".amount").text(amount.toFixed(2));
+      $(this).closest("tr").find(".amount").text(amount.toFixed(0));
       totalAmount += amount;
     });
-    $(".total-amount").text(totalAmount.toFixed(2));
+    $(".total-amount").text(totalAmount.toFixed(0));
 
     checkTotalMatch();
   }
 
   function submitForm() {
-    var totalAmount = parseFloat($("#totalAmount").text());
-    var denomination_total = parseFloat($(".total-amount").text());
+    var totalAmount = parseInt($("#totalAmount").text());
+    var denomination_total = parseInt($(".total-amount").text());
+    var gas = parseInt($("#gas").val());
+    var deduction = 0;
     if (total === totalAmount) {
-      var totalAmount = parseFloat($("#totalAmount").text()) || 0;
+      var totalAmount = parseInt($("#totalAmount").text()) || 0;
       rider_commission = totalAmount * 0.08;
       owner_commission = totalAmount * 0.07;
-      subTotal = rider_commission + owner_commission;
+      deduction = rider_commission + owner_commission + gas;
+
+      subTotal = totalAmount - deduction;
 
       let mainForm = {
         product_id: selectedProductId,
@@ -118,8 +125,8 @@ $(document).ready(function () {
         bo: $("#bo").val(),
         gas: $("#gas").val(),
         sales_total: totalAmount,
-        rider_commission: rider_commission.toFixed(2),
-        owner_commission: owner_commission.toFixed(2),
+        rider_commission: rider_commission.toFixed(0),
+        owner_commission: owner_commission.toFixed(0),
         subTotal: subTotal,
         onek: $("#onek").val(),
         fiveh: $("#fiveh").val(),
@@ -154,8 +161,8 @@ $(document).ready(function () {
   $("#submit-btn").attr("disabled", "disabled");
 
   function checkTotalMatch() {
-    var total = parseFloat($("#totalAmount").text()) || 0;
-    var totalAmount = parseFloat($(".total-amount").text()) || 0;
+    var total = parseInt($("#totalAmount").text()) || 0;
+    var totalAmount = parseInt($(".total-amount").text()) || 0;
 
     if (total === totalAmount && total !== 0) {
       $("#submit-btn").prop("disabled", false);
