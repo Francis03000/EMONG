@@ -6,7 +6,12 @@ $(document).ready(function () {
     const id = $(e.currentTarget).data("id");
     showDeleteConfirmation(id);
   });
-  $("body").on("click", "#view", (e) => view($(e.currentTarget).data("id")));
+  $("body").on("click", "#view", (e) => {
+    const report_date = $(e.currentTarget).data("report_date");
+    const product_name = $(e.currentTarget).data("product_name");
+
+    view(report_date, product_name);
+  });
 
   $("#filesearch").keyup(function () {
     var value = $("#filesearch").val().toLowerCase();
@@ -58,9 +63,10 @@ $(document).ready(function () {
             class: "text-wrap",
             html: reports.subTotal,
           }).appendTo(tableRow);
-
           var dateString = reports.sales_date_created_at;
           var date = new Date(dateString);
+
+          date.setDate(date.getDate() - 1);
 
           var options = {
             year: "numeric",
@@ -76,7 +82,8 @@ $(document).ready(function () {
             hour12: true,
           });
 
-          var formattedDateTime = formattedDate + ", " + timePart;
+          // var formattedDateTime = formattedDate + ", " + timePart;
+          var formattedDateTime = formattedDate;
 
           $("<td>", {
             class: "text-wrap",
@@ -87,7 +94,8 @@ $(document).ready(function () {
 
           $("<button>", {
             class: "btn btn-success mx-1 fa fa-eye ",
-            "data-id": i,
+            "data-report_date": reports.sales_date_created_at,
+            "data-product_name": reports.product_name,
             id: "view",
             html: "",
           }).appendTo(tableData);
@@ -106,4 +114,85 @@ $(document).ready(function () {
     window.print();
     window.location.reload();
   });
+
+  function view(report_date, product_name) {
+    $.get({
+      url: "controllers/reports/reports.php",
+      data: {
+        getDataReport: "getDataReport",
+        report_date: report_date,
+        product_name: product_name,
+      },
+      contentType: "application/json",
+      success: function (data) {
+        let newData = JSON.parse(data);
+        newData.forEach((reports, i) => {
+          var dateString = reports.sales_date_created_at;
+          var date = new Date(dateString);
+
+          date.setDate(date.getDate() - 1);
+
+          var options = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          };
+
+          var formattedDate = date.toLocaleDateString("en-US", options);
+
+          var timePart = date.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          });
+
+          // var formattedDateTime = formattedDate + ", " + timePart;
+          var formattedDateTime = formattedDate;
+          $("#report_date").text(formattedDateTime);
+          $("#total_plantsa").text(reports.total_plantsa);
+          $("#am_amount").text(reports.subTotal);
+          $("#product_name").text(reports.product_name);
+          $("#am_date").text(formattedDate);
+          var total_plantsa_am = reports.total_plantsa;
+          var item_per_plantsa = reports.item_per_plantsa;
+
+          var total_pcs_am =
+            parseInt(total_plantsa_am) * parseInt(item_per_plantsa);
+
+          $("#plantsa_am").text(total_plantsa_am);
+          $("#total_pcs_am").text(total_pcs_am);
+
+          var bo_am = reports.bo;
+
+          var bo_breakdown_am = Math.floor(bo_am / item_per_plantsa);
+
+          var bo_remainder_am = bo_am % total_plantsa_am;
+          $("#bo_am").text(bo_breakdown_am + " + " + bo_remainder_am);
+          $("#total_bo_am").text(bo_am);
+
+          var total_pcs_sold_am = total_pcs_am - bo_am;
+          var plantsa_pcs_breakdown_am = Math.floor(
+            total_pcs_sold_am / item_per_plantsa
+          );
+          var remainder_times_total_pcs_am =
+            plantsa_pcs_breakdown_am * item_per_plantsa;
+          var plantsa_pcs_remainder_am =
+            total_pcs_sold_am - remainder_times_total_pcs_am;
+
+          $("#pcs_am").text(
+            plantsa_pcs_breakdown_am + " + " + plantsa_pcs_remainder_am
+          );
+          $("#total_pcs_sold_am").text(total_pcs_sold_am);
+
+          var total_am_value = reports.subTotal;
+          var total_am = reports.sales_total;
+          var total_am_deduction =
+            parseInt(total_am) - parseInt(total_am_value);
+
+          $("#total_am_value").text(total_am_value);
+          $("#total_am_deduction").text(total_am_deduction);
+        });
+      },
+    });
+  }
 });

@@ -78,7 +78,7 @@
                             <div class="table-responsive">
                                 <table class="reports" id="data_table">
                                     <p>Emong Malunggay Pandesal</p>
-                                    <p>Branch Outlet: <span></span></p>
+                                    <p>Branch Outlet: <span id="product_name"></span></p>
                                     <p>Sales and Production Report</p>
                                 </table>
                             </div>
@@ -88,9 +88,9 @@
                                 <table class="reports" id="data_table">
                                     <tr>
                                         <th>DATE</th>
-                                        <td colspan="4">March 23, 2024</td>
+                                        <td colspan="4" id="report_date"></td>
                                         <th>TOTAL PLANCHA</th>
-                                        <td>10</td>
+                                        <td id="total_plantsa"></td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -105,10 +105,9 @@
                                     </tr>
                                     <tr>
                                         <td>AM (AMOUNT)</td>
-                                        <th>AM</th>
-                                        <td>₱638.00</td>
+                                        <td id="am_amount"></td>
                                         <th>PM (AMOUNT)</th>
-                                        <th>₱0.00</th>
+                                        <th id="pm_amount">₱0.00</th>
                                         <th>₱638.00</th>
                                         <th>AVERAGE:</th>
                                         <td></td>
@@ -124,8 +123,8 @@
                             <table class="reports " style="width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>DELIVERIES</th>
-                                        <th>DATE NG MASA</th>
+                                        <th rowspan="2">DELIVERIES</th>
+                                        <th rowspan="2">DATE NG MASA</th>
                                         <th colspan=" 3">NO. OF PRODUCTION FOR SALE</th>
                                         <th colspan="2">B.O.</th>
                                         <th colspan="2">SOLD</th>
@@ -134,8 +133,6 @@
 
                                     </tr>
                                     <tr>
-                                        <th></th>
-                                        <th></th>
                                         <th>SACK</th>
                                         <th>PLANCHA</th>
                                         <th>PCS.</th>
@@ -152,17 +149,17 @@
                                 <tbody>
                                     <tr>
                                         <td>1ST DELIVERY</td>
-                                        <td>03/23/24</td>
+                                        <td id="am_date"></td>
                                         <td></td>
-                                        <td>10</td>
-                                        <td>80</td>
-                                        <td>0+5</td>
-                                        <td>0</td>
-                                        <td>9 + 3</td>
-                                        <td>75</td>
+                                        <td id="plantsa_am"></td>
+                                        <td id="total_pcs_am"></td>
+                                        <td id="bo_am"></td>
+                                        <td id="total_bo_am"></td>
+                                        <td id="pcs_am"></td>
+                                        <td id="total_pcs_sold_am"></td>
                                         <td></td>
-                                        <td>750.00</td>
-                                        <td>112</td>
+                                        <td id="total_am_value">750.00</td>
+                                        <td id="total_am_deduction">112</td>
 
 
 

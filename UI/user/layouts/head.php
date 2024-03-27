@@ -24,7 +24,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/jquery-3.6.0.min.js"></script>
   <script src="assets/js/sweetalert2.all.min.js"></script>
-  <script src="assets/js/insta_scan.js"></script>
   <script src="assets/js/table2excel.js"></script>
 
 
