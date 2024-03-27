@@ -49,8 +49,9 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Product Name</th>
                                     <th scope="col">Total</th>
-                                    <th scope="col">Rider Commission</th>
-                                    <th scope="col">Owner Commission</th>
+                                    <th scope="col">Rider's Commission</th>
+                                    <th scope="col">Owner's Commission</th>
+                                    <th scope="col">GAS</th>
                                     <th scope="col">Sub Total</th>
                                     <th scope="col">Report Date</th>
                                     <th scope="col">Action</th>

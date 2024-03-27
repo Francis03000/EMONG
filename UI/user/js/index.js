@@ -111,13 +111,20 @@ $(document).ready(function () {
     var denomination_total = parseInt($(".total-amount").text());
     var gas = parseInt($("#gas").val());
     var deduction = 0;
-    if (total === totalAmount) {
-      var totalAmount = parseInt($("#totalAmount").text()) || 0;
-      rider_commission = totalAmount * 0.08;
-      owner_commission = totalAmount * 0.07;
-      deduction = rider_commission + owner_commission + gas;
+    if (totalAmount === totalAmount) {
+      totalAmount = parseInt($("#totalAmount").text(), 10) || 0;
 
-      subTotal = totalAmount - deduction;
+      var rider_commission = Math.round(totalAmount * 0.08);
+      var owner_commission = Math.round(totalAmount * 0.07);
+
+      deduction = rider_commission + owner_commission;
+      var subTotal = totalAmount - deduction;
+
+      if (gas != 0) {
+        var gas_deduc = Math.round(gas * 0.5);
+        owner_commission = owner_commission - gas_deduc;
+        subTotal = subTotal - gas_deduc;
+      }
 
       let mainForm = {
         product_id: selectedProductId,

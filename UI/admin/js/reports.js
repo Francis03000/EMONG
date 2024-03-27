@@ -51,6 +51,11 @@ $(document).ready(function () {
 
           $("<td>", {
             class: "text-wrap",
+            html: reports.gas,
+          }).appendTo(tableRow);
+
+          $("<td>", {
+            class: "text-wrap",
             html: reports.subTotal,
           }).appendTo(tableRow);
 
