@@ -11,8 +11,7 @@
     }
 
     .col-4 {
-        padding-left: 5px;
-        padding-right: 5px;
+
         margin-bottom: 0;
     }
 
@@ -22,8 +21,21 @@
         border: 1px solid;
     }
 
-    .form-control {
+    . {
         height: 20px;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    @media print {
+        .print-table {
+            border: 1px solid #000;
+            /* Add border */
+            padding: 10px;
+            /* Add padding for better readability */
+        }
     }
 </style>
 <div class="main-wrapper">
@@ -54,6 +66,7 @@
                                     <th scope="col">GAS</th>
                                     <th scope="col">Sub Total</th>
                                     <th scope="col">Report Date</th>
+                                    <th scope="col">Time</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -62,9 +75,7 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="card" style="margin-top:2%;" id="reportPrint">
+            <div id="sales_report">
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
@@ -72,289 +83,430 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="table-responsive">
-                                <table class="reports" id="data_table">
-                                    <p>Emong Malunggay Pandesal</p>
-                                    <p>Branch Outlet: <span id="product_name"></span></p>
-                                    <p>Sales and Production Report</p>
+                <div class="card" style="margin-top:2%; " id="reportPrint">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="table-responsive">
+                                    <table class="reports" id="data_table">
+                                        <p>Emong Malunggay Pandesal</p>
+                                        <p>Branch Outlet: <span id="product_name"></span></p>
+                                        <p>Sales and Production Report</p>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <div class="table-responsive">
+                                    <table class="reports m-0 p-0" id="data_table" style="width: 100%">
+                                        <tr>
+                                            <th>DATE</th>
+                                            <td colspan="4" id="report_date"></td>
+                                            <th>TOTAL PLANCHA</th>
+                                            <td id="total_plantsa"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>TIME: (BENTA) </td>
+                                            <th>AM</th>
+                                            <td>TIME: (BENTA) PM</td>
+                                            <th>PM</th>
+                                            <th>TOTAL</th>
+                                            <th>TOTAL SACK</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <td>AM (AMOUNT)</td>
+                                            <td id="am_amount"></td>
+                                            <th>PM (AMOUNT)</th>
+                                            <th id="pm_amount">₱0.00</th>
+                                            <th>₱638.00</th>
+                                            <th>AVERAGE:</th>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="">
+                            <div class="table-responsive text-center">
+                                <table class="reports " style="width: 100%; ">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">DELIVERIES</th>
+                                            <th rowspan="2">DATE NG MASA</th>
+                                            <th colspan=" 3">NO. OF PRODUCTION FOR SALE</th>
+                                            <th colspan="2">B.O.</th>
+                                            <th colspan="2">SOLD</th>
+                                            <th colspan="2">PESO VALUE</th>
+                                            <th></th>
+
+                                        </tr>
+                                        <tr>
+                                            <th>SACK</th>
+                                            <th>PLANCHA</th>
+                                            <th>PCS.</th>
+                                            <th>PLANCHA</th>
+                                            <th>PCS.</th>
+                                            <th>PLANCHA</th>
+                                            <th>PCS.</th>
+                                            <th>SP</th>
+                                            <th>VALUE</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1ST DELIVERY</td>
+                                            <td id="am_date"></td>
+                                            <td></td>
+                                            <td id="plantsa_am"></td>
+                                            <td id="total_pcs_am"></td>
+                                            <td id="bo_am"></td>
+                                            <td id="total_bo_am"></td>
+                                            <td id="pcs_am"></td>
+                                            <td id="total_pcs_sold_am"></td>
+                                            <td></td>
+                                            <td id="total_am_value">750.00</td>
+                                            <td id="total_am_deduction">112</td>
+
+
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>2ND DELIVERY</td>
+                                            <td>03/23/24</td>
+                                            <td></td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0 + 0</td>
+                                            <td>0</td>
+                                            <td>0 + 0</td>
+                                            <td>0</td>
+                                            <td></td>
+                                            <td>0.00</td>
+                                            <td>0</td>
+
+
+
+
+                                        </tr>
+
+
+                                    </tbody>
                                 </table>
+
                             </div>
                         </div>
-                        <div class="col-7">
-                            <div class="table-responsive">
-                                <table class="reports" id="data_table">
-                                    <tr>
-                                        <th>DATE</th>
-                                        <td colspan="4" id="report_date"></td>
-                                        <th>TOTAL PLANCHA</th>
-                                        <td id="total_plantsa"></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>TIME: (BENTA) </td>
-                                        <th>AM</th>
-                                        <td>TIME: (BENTA) PM</td>
-                                        <th>PM</th>
-                                        <th>TOTAL</th>
-                                        <th>TOTAL SACK</th>
-                                        <th></th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>AM (AMOUNT)</td>
-                                        <td id="am_amount"></td>
-                                        <th>PM (AMOUNT)</th>
-                                        <th id="pm_amount">₱0.00</th>
-                                        <th>₱638.00</th>
-                                        <th>AVERAGE:</th>
-                                        <td></td>
-                                    </tr>
+
+                        <div class="row border border-dark" style="margin-left: 0; margin-right: 0;">
+                            <div class="col-4 p-0">
+                                <div class=" border border-dark text-center  " style="height: 289px">
+                                    <div class="font-weight-bold d-inline-block">EMONG</div>
+
+                                </div>
+                                <table style="width: 100%;" class="reports">
+                                    <tbody>
+                                        <tr>
+                                            <td>TOTAL CASH SALES (1ST DELIVERY)</td>
+                                            <td id="total_cash_am"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>TOTAL CASH SALES (2ND DELIVERY)</td>
+                                            <td>₱680.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TOTAL SALES</td>
+                                            <td>₱1,275.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LESS EXPENSES (if any)</td>
+                                            <td>₱0.00</td>
+                                        <tr>
+                                            <td>CASH BALANCE</td>
+                                            <td>₱</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CASH COUNT</td>
+                                            <td>₱1,275.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SHORT/OVER</td>
+                                            <td>₱</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DATE DEPOSITED</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
-
                             </div>
+
+                            <div class="col-4 p-0 text-center">
+                                <table class="reports" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Denomination</th>
+                                            <th>No. of Pcs</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-denomination="1000">
+                                            <td class="col-4 p-0">1000.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="onek"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="500">
+                                            <td class="col-4 p-0">500.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="fiveh"
+                                                    class=" text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="200">
+                                            <td class="col-4 p-0">200.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="twoh"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="100">
+                                            <td class="col-4 p-0">100.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="oneh"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="50">
+                                            <td class="col-4 p-0">50.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="fiftyp"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="20">
+                                            <td class="col-4 p-0">20.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="twentyp"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="10">
+                                            <td class="col-4 p-0">10.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="tenp"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="5">
+                                            <td class="col-4 p-0">5.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="fivep"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="1">
+                                            <td class="col-4 p-0">1.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="onep"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2" class="font-weight-bold">AM Total</td>
+
+                                            <td class="total-col-4 p-0 amount font-weight-bold">0.00</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                                <table class="reports" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Denomination</th>
+                                            <th>No. of Pcs</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-denomination="1000">
+                                            <td class="col-4 p-0">1000.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="onek"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="500">
+                                            <td class="col-4 p-0">500.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="fiveh"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="200">
+                                            <td class="col-4 p-0">200.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="twoh"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="100">
+                                            <td class="col-4 p-0">100.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="oneh"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="50">
+                                            <td class="col-4 p-0">50.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="fiftyp"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="20">
+                                            <td class="col-4 p-0">20.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="twentyp"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="10">
+                                            <td class="col-4 p-0">10.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="tenp"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="5">
+                                            <td class="col-4 p-0">5.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="fivep"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+                                        <tr data-denomination="1">
+                                            <td class="col-4 p-0">1.00</td>
+                                            <td class="col-4 p-0"><input type="number" id="onep"
+                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            </td>
+                                            <td class="col-4 p-0 amount">0.00</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2" class="font-weight-bold">PM Total</td>
+
+                                            <td class="total-col-4 p-0 amount font-weight-bold">0.00</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-4 p-0">
+                                <div class=" border border-dark text-center  " style="height: 289px">
+
+                                </div>
+                                <div></div>
+                                <table style="width: 100%;" class="reports">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 50%">PREPARED BY: AM</td>
+                                            <td style="width: 50%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-right">JEANE AGAPITO</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%">PREPARED BY: PM</td>
+                                            <td style="width: 50%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-right">JEANE AGAPITO</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%">RECEIVED BY: </td>
+                                            <td style="width: 50%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-right" style="height: 23px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%">CHECKED BY: </td>
+                                            <td style="width: 50%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-right" style="height: 23px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%">APPROVED BY: </td>
+                                            <td style="width: 50%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-right" style="height: 23px;"></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
 
-                    </div>
-                    <div>
-                        <div class="table-responsive text-center">
-                            <table class="reports " style="width: 100%;">
+                        <div>
+                            <table style="width: 100%" class="reports">
                                 <thead>
                                     <tr>
-                                        <th rowspan="2">DELIVERIES</th>
-                                        <th rowspan="2">DATE NG MASA</th>
-                                        <th colspan=" 3">NO. OF PRODUCTION FOR SALE</th>
-                                        <th colspan="2">B.O.</th>
-                                        <th colspan="2">SOLD</th>
-                                        <th colspan="2">PESO VALUE</th>
-                                        <th></th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>SACK</th>
-                                        <th>PLANCHA</th>
-                                        <th>PCS.</th>
-                                        <th>PLANCHA</th>
-                                        <th>PCS.</th>
-                                        <th>PLANCHA</th>
-                                        <th>PCS.</th>
-                                        <th>SP</th>
-                                        <th>VALUE</th>
-                                        <th></th>
-
+                                        <td></td>
+                                        <th colspan="2" class="text-center">STATEMENT OF BAD ORDER</th>
+                                        <th>TOTAL B.O.</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1ST DELIVERY</td>
-                                        <td id="am_date"></td>
+                                        <td>MGA GINAWA</td>
+                                        <td>FIRST DELIVERY</td>
+                                        <td>SECOND DELIVERY</td>
                                         <td></td>
-                                        <td id="plantsa_am"></td>
-                                        <td id="total_pcs_am"></td>
-                                        <td id="bo_am"></td>
-                                        <td id="total_bo_am"></td>
-                                        <td id="pcs_am"></td>
-                                        <td id="total_pcs_sold_am"></td>
-                                        <td></td>
-                                        <td id="total_am_value">750.00</td>
-                                        <td id="total_am_deduction">112</td>
-
-
-
-
                                     </tr>
                                     <tr>
-                                        <td>2ND DELIVERY</td>
-                                        <td>03/23/24</td>
+                                        <td>AKTUWAL NA ORAS NG PAGBENTA</td>
+                                        <td colspan="2"></td>
                                         <td></td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0 + 0</td>
-                                        <td>0</td>
-                                        <td>0 + 0</td>
-                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AKTUWAL NA ORAS NG B.O.</td>
+                                        <td colspan="2"></td>
                                         <td></td>
-                                        <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AKTUWAL NA BILANG NG B.O.</td>
+                                        <td>10</td>
                                         <td>0</td>
-
-
-
-
+                                        <td>10</td>
                                     </tr>
                                 </tbody>
                             </table>
 
                         </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-4 border border-dark text-center  " style="height: 300px">
-                            <div class="font-weight-bold d-inline-block">EMONG</div>
-                        </div>
-                        <div class="col-4 text-center">
-                            <table class="reports">
-                                <thead>
-                                    <tr>
-                                        <th>Denomination</th>
-                                        <th>No. of Pcs</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr data-denomination="1000">
-                                        <td>1000.00</td>
-                                        <td><input type="number" id="onek" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="500">
-                                        <td>500.00</td>
-                                        <td><input type="number" id="fiveh" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="200">
-                                        <td>200.00</td>
-                                        <td><input type="number" id="twoh" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="100">
-                                        <td>100.00</td>
-                                        <td><input type="number" id="oneh" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="50">
-                                        <td>50.00</td>
-                                        <td><input type="number" id="fiftyp" class="form-control denomination"
-                                                value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="20">
-                                        <td>20.00</td>
-                                        <td><input type="number" id="twentyp" class="form-control denomination"
-                                                value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="10">
-                                        <td>10.00</td>
-                                        <td><input type="number" id="tenp" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="5">
-                                        <td>5.00</td>
-                                        <td><input type="number" id="fivep" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="1">
-                                        <td>1.00</td>
-                                        <td><input type="number" id="onep" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="2" class="font-weight-bold">AM Total</td>
-
-                                        <td class="total-amount font-weight-bold">0.00</td>
-                                    </tr>
 
 
-                                </tbody>
-                            </table>
-                            <table class="reports">
-                                <thead>
-                                    <tr>
-                                        <th>Denomination</th>
-                                        <th>No. of Pcs</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr data-denomination="1000">
-                                        <td>1000.00</td>
-                                        <td><input type="number" id="onek" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="500">
-                                        <td>500.00</td>
-                                        <td><input type="number" id="fiveh" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="200">
-                                        <td>200.00</td>
-                                        <td><input type="number" id="twoh" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="100">
-                                        <td>100.00</td>
-                                        <td><input type="number" id="oneh" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="50">
-                                        <td>50.00</td>
-                                        <td><input type="number" id="fiftyp" class="form-control denomination"
-                                                value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="20">
-                                        <td>20.00</td>
-                                        <td><input type="number" id="twentyp" class="form-control denomination"
-                                                value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="10">
-                                        <td>10.00</td>
-                                        <td><input type="number" id="tenp" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="5">
-                                        <td>5.00</td>
-                                        <td><input type="number" id="fivep" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
-                                    <tr data-denomination="1">
-                                        <td>1.00</td>
-                                        <td><input type="number" id="onep" class="form-control denomination" value="0">
-                                        </td>
-                                        <td class="amount">0.00</td>
-                                    </tr>
 
-                                    <tr>
-                                        <td colspan="2" class="font-weight-bold">PM Total</td>
-
-                                        <td class="total-amount font-weight-bold">0.00</td>
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-4">
-
-                        </div>
                     </div>
 
                 </div>
+                <button class="btn btn-primary" id="printReport">PRINT</button>
 
             </div>
-            <button class="btn btn-primary" id="printReport">PRINT</button>
+
 
         </div>
     </div>

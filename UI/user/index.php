@@ -40,9 +40,23 @@
                     <i class="fas fa-arrow-left"></i> Back
                 </button>
 
+
+
                 <form id="mainForm" class="container">
                     <h2 class="text-center my-2">SALES DETAILS</h2>
+                    <div class="row my-2">
+                        <div class="col-8">
+                            <label for="product_name" class="col-form-label col-md-4 ">Time</label>
 
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" name="am_pm" id="am_pm">
+                                <option value="AM">AM </option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+
+                    </div>
                     <div class="form-group row">
                         <label for="product_name" class="col-form-label col-md-4">Total Plancha</label>
                         <div class="col-md-8">

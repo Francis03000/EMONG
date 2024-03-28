@@ -90,6 +90,11 @@ $(document).ready(function () {
             text: formattedDateTime,
           }).appendTo(tableRow);
 
+          $("<td>", {
+            class: "text-wrap",
+            html: reports.am_pm,
+          }).appendTo(tableRow);
+
           let tableData = $("<td>", { class: "text-wrap" });
 
           $("<button>", {
@@ -106,16 +111,12 @@ $(document).ready(function () {
       },
     });
   }
-
-  $("#printReport").click(function () {
-    const printContents = document.getElementById("reportPrint").innerHTML;
-    const originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    window.location.reload();
-  });
+  // $("#sales_report").hide();
 
   function view(report_date, product_name) {
+    // $("#sales_report").show();
+    // $("#reportDetails").hide();
+
     $.get({
       url: "controllers/reports/reports.php",
       data: {
@@ -191,8 +192,35 @@ $(document).ready(function () {
 
           $("#total_am_value").text(total_am_value);
           $("#total_am_deduction").text(total_am_deduction);
+
+          $("#total_cash_am").text("₱" + total_am_value);
         });
       },
     });
   }
+
+  $("#printReport").click(function () {
+    // Get the HTML content of the element with id "reportPrint"
+    const printContents = document.getElementById("reportPrint").innerHTML;
+
+    // Modify the HTML content to include border styles
+    const styledPrintContents =
+      "<style>@media print { " +
+      "table.reports { border-collapse: collapse; width: 100%; } " +
+      "table.reports th, table.reports td { border: 1px solid black; padding: 8px; } " +
+      "table.reports th { background-color: #f2f2f2; } " +
+      "div.border table { border: 1px solid black; } " +
+      "}</style>" +
+      printContents;
+
+    // Replace the entire body HTML content with the modified content
+    document.body.innerHTML = styledPrintContents;
+
+    // Initiate printing
+    window.print();
+
+    // Restore original content and reload the page
+    document.body.innerHTML = printContents;
+    window.location.reload();
+  });
 });
