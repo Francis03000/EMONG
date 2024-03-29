@@ -128,6 +128,7 @@ $(document).ready(function () {
 
       let mainForm = {
         product_id: selectedProductId,
+        am_pm: $("#am_pm").val(),
         total_plantsa: $("#total_plancha").val(),
         bo: $("#bo").val(),
         gas: $("#gas").val(),

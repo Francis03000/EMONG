@@ -4,7 +4,7 @@ include_once ('../../../../API/DBCRUDAPI.php');
 
 $DBCRUDAPI = new DBCRUDAPI();
 
-if (isset ($_GET['getData'])) {
+if (isset($_GET['getData'])) {
     $DBCRUDAPI->select("products", "*");
     $data = $DBCRUDAPI->sql;
     $res = array();
@@ -13,18 +13,20 @@ if (isset ($_GET['getData'])) {
     }
     echo json_encode($res);
 } else {
-    if (isset ($_POST['addNew'])) {
-        $product_id = $_POST["product_id"];
-        $total_plantsa = $_POST["total_plantsa"];
-        $bo = $_POST["bo"];
-        $gas = $_POST["gas"];
-        $sales_total = $_POST["sales_total"];
-        $rider_commission = $_POST["rider_commission"];
-        $owner_commission = $_POST["owner_commission"];
-        $subTotal = $_POST["subTotal"];
+    if (isset($_POST['addNew'])) {
+        $product_id = htmlspecialchars($_POST["product_id"]);
+        $am_pm = htmlspecialchars($_POST["am_pm"]);
+        $total_plantsa = htmlspecialchars($_POST["total_plantsa"]);
+        $bo = htmlspecialchars($_POST["bo"]);
+        $gas = htmlspecialchars($_POST["gas"]);
+        $sales_total = htmlspecialchars($_POST["sales_total"]);
+        $rider_commission = htmlspecialchars($_POST["rider_commission"]);
+        $owner_commission = htmlspecialchars($_POST["owner_commission"]);
+        $subTotal = htmlspecialchars($_POST["subTotal"]);
 
         $last_inserted_id = $DBCRUDAPI->insertReturnId('sales', [
             'product_id' => $product_id,
+            'am_pm' => $am_pm,
             'total_plantsa' => $total_plantsa,
             'bo' => $bo,
             'gas' => $gas,
@@ -35,19 +37,20 @@ if (isset ($_GET['getData'])) {
         ]);
 
         if ($last_inserted_id !== false) {
-            $onek = $_POST["onek"];
-            $fiveh = $_POST["fiveh"];
-            $twoh = $_POST["twoh"];
-            $oneh = $_POST["oneh"];
-            $fiftyp = $_POST["fiftyp"];
-            $twentyp = $_POST["twentyp"];
-            $tenp = $_POST["tenp"];
-            $fivep = $_POST["fivep"];
-            $onep = $_POST["onep"];
-            $denomination_total = $_POST["denomination_total"];
+            $onek = htmlspecialchars($_POST["onek"]);
+            $fiveh = htmlspecialchars($_POST["fiveh"]);
+            $twoh = htmlspecialchars($_POST["twoh"]);
+            $oneh = htmlspecialchars($_POST["oneh"]);
+            $fiftyp = htmlspecialchars($_POST["fiftyp"]);
+            $twentyp = htmlspecialchars($_POST["twentyp"]);
+            $tenp = htmlspecialchars($_POST["tenp"]);
+            $fivep = htmlspecialchars($_POST["fivep"]);
+            $onep = htmlspecialchars($_POST["onep"]);
+            $denomination_total = htmlspecialchars($_POST["denomination_total"]);
 
             $result = $DBCRUDAPI->insert('denomination', [
                 'sales_id' => $last_inserted_id,
+                'am_pm' => $am_pm,
                 'onek' => $onek,
                 'fiveh' => $fiveh,
                 'twoh' => $twoh,
@@ -68,7 +71,7 @@ if (isset ($_GET['getData'])) {
         } else {
             echo json_encode(array("success" => false));
         }
-    } else if (isset ($_POST['update'])) {
+    } else if (isset($_POST['update'])) {
 
         $product_id = $_POST["product_id"];
         $product_name = $_POST["product_name"];
@@ -82,7 +85,7 @@ if (isset ($_GET['getData'])) {
         } else {
             echo json_encode(array("success" => false));
         }
-    } else if (isset ($_POST['delete'])) {
+    } else if (isset($_POST['delete'])) {
 
         $id = $_POST["id"];
 

@@ -66,7 +66,6 @@
                                     <th scope="col">GAS</th>
                                     <th scope="col">Sub Total</th>
                                     <th scope="col">Report Date</th>
-                                    <th scope="col">Time</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -118,8 +117,8 @@
                                             <td>AM (AMOUNT)</td>
                                             <td id="am_amount"></td>
                                             <th>PM (AMOUNT)</th>
-                                            <th id="pm_amount">₱0.00</th>
-                                            <th>₱638.00</th>
+                                            <th id="pm_amount"></th>
+                                            <th id="total_day_amount"></th>
                                             <th>AVERAGE:</th>
                                             <td></td>
                                         </tr>
@@ -169,8 +168,8 @@
                                             <td id="pcs_am"></td>
                                             <td id="total_pcs_sold_am"></td>
                                             <td></td>
-                                            <td id="total_am_value">750.00</td>
-                                            <td id="total_am_deduction">112</td>
+                                            <td id="total_am_value"></td>
+                                            <td id="total_am_deduction"></td>
 
 
 
@@ -178,17 +177,17 @@
                                         </tr>
                                         <tr>
                                             <td>2ND DELIVERY</td>
-                                            <td>03/23/24</td>
+                                            <td id="pm_date"></td>
                                             <td></td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0 + 0</td>
-                                            <td>0</td>
-                                            <td>0 + 0</td>
-                                            <td>0</td>
+                                            <td id="plantsa_pm"></td>
+                                            <td id="total_pcs_pm"></td>
+                                            <td id="bo_pm"></td>
+                                            <td id="total_bo_pm"></td>
+                                            <td id="pcs_pm"></td>
+                                            <td id="total_pcs_sold_pm"></td>
                                             <td></td>
-                                            <td>0.00</td>
-                                            <td>0</td>
+                                            <td id="total_pm_value"></td>
+                                            <td id="total_pm_deduction"></td>
 
 
 
@@ -216,26 +215,26 @@
                                         </tr>
                                         <tr>
                                             <td>TOTAL CASH SALES (2ND DELIVERY)</td>
-                                            <td>₱680.00</td>
+                                            <td id="total_cash_pm"></td>
                                         </tr>
                                         <tr>
                                             <td>TOTAL SALES</td>
-                                            <td>₱1,275.00</td>
+                                            <td id="total_day_sales"></td>
                                         </tr>
                                         <tr>
                                             <td>LESS EXPENSES (if any)</td>
                                             <td>₱0.00</td>
                                         <tr>
                                             <td>CASH BALANCE</td>
-                                            <td>₱</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td>CASH COUNT</td>
-                                            <td>₱1,275.00</td>
+                                            <td id="cash_count"></td>
                                         </tr>
                                         <tr>
                                             <td>SHORT/OVER</td>
-                                            <td>₱</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td>DATE DEPOSITED</td>
@@ -489,9 +488,9 @@
                                     </tr>
                                     <tr>
                                         <td>AKTUWAL NA BILANG NG B.O.</td>
-                                        <td>10</td>
-                                        <td>0</td>
-                                        <td>10</td>
+                                        <td id="total_bo_am2"></td>
+                                        <td id="total_bo_pm2"></td>
+                                        <td id="total_day_bo"></td>
                                     </tr>
                                 </tbody>
                             </table>

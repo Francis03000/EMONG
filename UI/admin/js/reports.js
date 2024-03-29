@@ -9,8 +9,9 @@ $(document).ready(function () {
   $("body").on("click", "#view", (e) => {
     const report_date = $(e.currentTarget).data("report_date");
     const product_name = $(e.currentTarget).data("product_name");
+    const am_pm = $(e.currentTarget).data("am_pm");
 
-    view(report_date, product_name);
+    view(report_date, product_name, am_pm);
   });
 
   $("#filesearch").keyup(function () {
@@ -87,12 +88,7 @@ $(document).ready(function () {
 
           $("<td>", {
             class: "text-wrap",
-            text: formattedDateTime,
-          }).appendTo(tableRow);
-
-          $("<td>", {
-            class: "text-wrap",
-            html: reports.am_pm,
+            text: formattedDateTime + ", " + reports.am_pm,
           }).appendTo(tableRow);
 
           let tableData = $("<td>", { class: "text-wrap" });
@@ -101,6 +97,7 @@ $(document).ready(function () {
             class: "btn btn-success mx-1 fa fa-eye ",
             "data-report_date": reports.sales_date_created_at,
             "data-product_name": reports.product_name,
+            "data-am_pm": reports.am_pm,
             id: "view",
             html: "",
           }).appendTo(tableData);
@@ -113,16 +110,19 @@ $(document).ready(function () {
   }
   // $("#sales_report").hide();
 
-  function view(report_date, product_name) {
+  function view(report_date, product_name, am_pm) {
     // $("#sales_report").show();
     // $("#reportDetails").hide();
-
+    var totalPlantsa = 0;
+    var totalDayAMount = 0;
+    var totalBo = 0;
     $.get({
       url: "controllers/reports/reports.php",
       data: {
         getDataReport: "getDataReport",
         report_date: report_date,
         product_name: product_name,
+        am_pm: "AM",
       },
       contentType: "application/json",
       success: function (data) {
@@ -150,8 +150,9 @@ $(document).ready(function () {
           // var formattedDateTime = formattedDate + ", " + timePart;
           var formattedDateTime = formattedDate;
           $("#report_date").text(formattedDateTime);
-          $("#total_plantsa").text(reports.total_plantsa);
+          totalPlantsa += parseInt(reports.total_plantsa);
           $("#am_amount").text(reports.subTotal);
+          totalDayAMount += parseInt(reports.subTotal);
           $("#product_name").text(reports.product_name);
           $("#am_date").text(formattedDate);
           var total_plantsa_am = reports.total_plantsa;
@@ -167,9 +168,12 @@ $(document).ready(function () {
 
           var bo_breakdown_am = Math.floor(bo_am / item_per_plantsa);
 
-          var bo_remainder_am = bo_am % total_plantsa_am;
+          var bo_remainder_am = bo_am % item_per_plantsa;
+
           $("#bo_am").text(bo_breakdown_am + " + " + bo_remainder_am);
           $("#total_bo_am").text(bo_am);
+          $("#total_bo_am2").text(bo_am);
+          totalBo += parseInt(bo_am);
 
           var total_pcs_sold_am = total_pcs_am - bo_am;
           var plantsa_pcs_breakdown_am = Math.floor(
@@ -195,6 +199,103 @@ $(document).ready(function () {
 
           $("#total_cash_am").text("₱" + total_am_value);
         });
+        $("#total_plantsa").text(totalPlantsa);
+        $("#total_day_amount").text(totalDayAMount);
+        $("#total_day_sales").text("₱" + totalDayAMount);
+        $("#cash_count").text("₱" + totalDayAMount);
+        $("#total_day_bo").text(totalBo);
+      },
+    });
+
+    $.get({
+      url: "controllers/reports/reports.php",
+      data: {
+        getDataReport: "getDataReport",
+        report_date: report_date,
+        product_name: product_name,
+        am_pm: "PM",
+      },
+      contentType: "application/json",
+      success: function (data) {
+        let newData = JSON.parse(data);
+        newData.forEach((reports, i) => {
+          var dateString = reports.sales_date_created_at;
+          var date = new Date(dateString);
+
+          date.setDate(date.getDate() - 1);
+
+          var options = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          };
+
+          var formattedDate = date.toLocaleDateString("en-US", options);
+
+          var timePart = date.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          });
+
+          // var formattedDateTime = formattedDate + ", " + timePart;
+          var formattedDateTime = formattedDate;
+          $("#report_date").text(formattedDateTime);
+          totalPlantsa += parseInt(reports.total_plantsa);
+          $("#pm_amount").text(reports.subTotal);
+          totalDayAMount += parseInt(reports.subTotal);
+          $("#product_name").text(reports.product_name);
+          $("#pm_date").text(formattedDate);
+          var total_plantsa_am = reports.total_plantsa;
+          var item_per_plantsa = reports.item_per_plantsa;
+
+          var total_pcs_am =
+            parseInt(total_plantsa_am) * parseInt(item_per_plantsa);
+
+          $("#plantsa_pm").text(total_plantsa_am);
+          $("#total_pcs_pm").text(total_pcs_am);
+
+          var bo_am = reports.bo;
+          totalBo += parseInt(bo_am);
+
+          var bo_breakdown_am = Math.floor(bo_am / item_per_plantsa);
+
+          var bo_remainder_am = bo_am % item_per_plantsa;
+
+          $("#bo_pm").text(bo_breakdown_am + " + " + bo_remainder_am);
+          $("#total_bo_pm").text(bo_am);
+          $("#total_bo_pm2").text(bo_am);
+
+          var total_pcs_sold_am = total_pcs_am - bo_am;
+          var plantsa_pcs_breakdown_am = Math.floor(
+            total_pcs_sold_am / item_per_plantsa
+          );
+          var remainder_times_total_pcs_am =
+            plantsa_pcs_breakdown_am * item_per_plantsa;
+          var plantsa_pcs_remainder_am =
+            total_pcs_sold_am - remainder_times_total_pcs_am;
+
+          $("#pcs_pm").text(
+            plantsa_pcs_breakdown_am + " + " + plantsa_pcs_remainder_am
+          );
+          $("#total_pcs_sold_pm").text(total_pcs_sold_am);
+
+          var total_am_value = reports.subTotal;
+          var total_am = reports.sales_total;
+          var total_am_deduction =
+            parseInt(total_am) - parseInt(total_am_value);
+
+          $("#total_pm_value").text(total_am_value);
+          $("#total_pm_deduction").text(total_am_deduction);
+
+          $("#total_cash_pm").text("₱" + total_am_value);
+        });
+
+        $("#total_plantsa").text(totalPlantsa);
+        $("#total_day_amount").text(totalDayAMount);
+        $("#total_day_sales").text("₱" + totalDayAMount);
+        $("#cash_count").text("₱" + totalDayAMount);
+        $("#total_day_bo").text(totalBo);
       },
     });
   }
