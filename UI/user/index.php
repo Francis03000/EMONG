@@ -36,7 +36,7 @@
 
             </div>
             <div id="sales_info">
-                <button class="btn btn-success back-button" onclick="goBack()">
+                <button class="btn btn-success back-button">
                     <i class="fas fa-arrow-left"></i> Back
                 </button>
 
@@ -51,8 +51,8 @@
                         </div>
                         <div class="col-4">
                             <select class="form-control" name="am_pm" id="am_pm">
-                                <option value="AM">AM </option>
-                                <option value="PM">PM</option>
+                                <!-- <option value="AM">AM </option>
+                                <option value="PM">PM</option> -->
                             </select>
                         </div>
 

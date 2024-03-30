@@ -82,6 +82,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card" style="margin-top:2%; " id="reportPrint">
 
                     <div class="card-body">
@@ -89,9 +90,9 @@
                             <div class="col-5">
                                 <div class="table-responsive">
                                     <table class="reports" id="data_table">
-                                        <p>Emong Malunggay Pandesal</p>
-                                        <p>Branch Outlet: <span id="product_name"></span></p>
-                                        <p>Sales and Production Report</p>
+                                        <h3>Emong Malunggay Pandesal</h3>
+                                        <h3>Branch Outlet: <span id="product_name"></span></h3>
+                                        <h3>Sales and Production Report</h3>
                                     </table>
                                 </div>
                             </div>
@@ -502,6 +503,13 @@
                     </div>
 
                 </div>
+                <!-- <div class="row" >
+                    <div class="col-4" ></div>
+                    <div class="col-4" ></div>
+                </div> -->
+                <button class="btn btn-success back-button">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
                 <button class="btn btn-primary" id="printReport">PRINT</button>
 
             </div>

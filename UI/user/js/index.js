@@ -42,6 +42,7 @@ $(document).ready(function () {
   });
 
   function backToMenu() {
+    $("#am_pm").empty();
     $("#mainForm").trigger("reset");
     $("#sales_info").hide();
     $("#sales_contain").show();
@@ -57,27 +58,82 @@ $(document).ready(function () {
   });
 
   function sales_details(selectedProductId, name, price, item_per_plantsa) {
-    $("#sales_contain").hide();
-    $("#sales_info").show();
+    var currentDate = new Date();
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth() + 1;
+    var day = currentDate.getDate();
 
-    total = 0;
-    rider_commission = 0;
+    month = month < 10 ? "0" + month : month;
+    day = day < 10 ? "0" + day : day;
 
-    function updateTotalAmount() {
-      var totalPlancha = parseInt($("#total_plancha").val()) || 0;
-      total_pcs = totalPlancha * item_per_plantsa;
-      // total_pcs * price;
-      var bo = parseInt($("#bo").val()) || 0;
-      var gas = parseInt($("#gas").val()) || 0;
-      total_pcs = total_pcs - bo;
-      total = total_pcs * price;
-      rider_commission = total * 0.08;
-      $("#totalAmount").text(total.toFixed(0));
-      $("#rider_commission").text(rider_commission.toFixed(0));
-      checkTotalMatch();
+    var currentFormattedDate = year + "-" + month + "-" + day;
+    $.get({
+      url: "controllers/reports/reports.php",
+      data: {
+        product_name: name,
+        sales_date_created_at: currentFormattedDate,
+        getData: "getData",
+      },
+      success: function (data) {
+        let newData = JSON.parse(data);
+        let hasAM = false;
+        let hasPM = false;
+        // Iterate through the returned data
+        newData.forEach((product) => {
+          if (product.am_pm === "AM") {
+            hasAM = true;
+          } else if (product.am_pm === "PM") {
+            hasPM = true;
+          }
+        });
+        let opts2 = $("#am_pm");
+        if (hasAM && hasPM) {
+          Swal.fire({
+            position: "center",
+            icon: "info",
+            title:
+              "You have already submitted your full report in this product",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // alert("You have already submitted your full report in this product");
+        } else if (hasAM) {
+          createSales();
+          opts2.append('<option value="PM">PM</option>');
+        } else if (hasPM) {
+          createSales();
+          opts2.append('<option value="AM">AM </option>');
+        } else {
+          createSales();
+          opts2.append(
+            '<option value="AM">AM </option>' + '<option value="PM">PM</option>'
+          );
+        }
+      },
+    });
+    function createSales() {
+      $("#sales_contain").hide();
+      $("#sales_info").show();
+
+      total = 0;
+      rider_commission = 0;
+
+      function updateTotalAmount() {
+        var totalPlancha = parseInt($("#total_plancha").val()) || 0;
+        total_pcs = totalPlancha * item_per_plantsa;
+        // total_pcs * price;
+        var bo = parseInt($("#bo").val()) || 0;
+        var gas = parseInt($("#gas").val()) || 0;
+        total_pcs = total_pcs - bo;
+        total = total_pcs * price;
+        rider_commission = total * 0.08;
+        $("#totalAmount").text(total.toFixed(0));
+        $("#rider_commission").text(rider_commission.toFixed(0));
+        checkTotalMatch();
+      }
+      $("#total_plancha, #bo, #gas").on("input", updateTotalAmount);
+      updateTotalAmount();
     }
-    $("#total_plancha, #bo, #gas").on("input", updateTotalAmount);
-    updateTotalAmount();
   }
 
   $(".denomination").on("input", function () {

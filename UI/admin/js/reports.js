@@ -108,11 +108,48 @@ $(document).ready(function () {
       },
     });
   }
-  // $("#sales_report").hide();
+  function resetReportData() {
+    $("#report_date").text("");
+    $("#am_date").text("");
+    $("#pm_date").text("");
+    $("#product_name").text("");
+
+    $("#am_amount").text("");
+    $("#pm_amount").text("");
+    $("#total_plantsa").text("");
+    $("#total_day_amount").text("");
+    $("#total_day_sales").text("₱");
+    $("#cash_count").text("₱");
+    $("#total_day_bo").text("");
+
+    $("#plantsa_am").text("");
+    $("#total_pcs_am").text("");
+    $("#bo_am").text("");
+    $("#total_bo_am").text("");
+    $("#total_bo_am2").text("");
+    $("#pcs_am").text("");
+    $("#total_pcs_sold_am").text("");
+    $("#total_am_value").text("");
+    $("#total_am_deduction").text("");
+    $("#total_cash_am").text("₱");
+
+    $("#plantsa_pm").text("");
+    $("#total_pcs_pm").text("");
+    $("#bo_pm").text("");
+    $("#total_bo_pm").text("");
+    $("#total_bo_pm2").text("");
+    $("#pcs_pm").text("");
+    $("#total_pcs_sold_pm").text("");
+    $("#total_pm_value").text("");
+    $("#total_pm_deduction").text("");
+    $("#total_cash_pm").text("₱");
+  }
+  $("#sales_report").hide();
 
   function view(report_date, product_name, am_pm) {
-    // $("#sales_report").show();
-    // $("#reportDetails").hide();
+    resetReportData();
+    $("#sales_report").show();
+    $("#reportDetails").hide();
     var totalPlantsa = 0;
     var totalDayAMount = 0;
     var totalBo = 0;
@@ -165,7 +202,6 @@ $(document).ready(function () {
           $("#total_pcs_am").text(total_pcs_am);
 
           var bo_am = reports.bo;
-
           var bo_breakdown_am = Math.floor(bo_am / item_per_plantsa);
 
           var bo_remainder_am = bo_am % item_per_plantsa;
@@ -299,29 +335,34 @@ $(document).ready(function () {
       },
     });
   }
+  $(".back-button").click(function () {
+    backToMenu();
+  });
 
+  function backToMenu() {
+    resetReportData();
+    $("#sales_report").hide();
+    $("#reportDetails").show();
+  }
   $("#printReport").click(function () {
-    // Get the HTML content of the element with id "reportPrint"
+    $("#footer_btn").hide();
     const printContents = document.getElementById("reportPrint").innerHTML;
 
-    // Modify the HTML content to include border styles
     const styledPrintContents =
       "<style>@media print { " +
       "table.reports { border-collapse: collapse; width: 100%; } " +
-      "table.reports th, table.reports td { border: 1px solid black; padding: 8px; } " +
+      "table.reports th, table.reports td { border: 1px solid black; padding: 15px;  font-size: 15px;} " +
       "table.reports th { background-color: #f2f2f2; } " +
       "div.border table { border: 1px solid black; } " +
       "}</style>" +
       printContents;
 
-    // Replace the entire body HTML content with the modified content
     document.body.innerHTML = styledPrintContents;
 
-    // Initiate printing
     window.print();
 
-    // Restore original content and reload the page
     document.body.innerHTML = printContents;
+    resetReportData();
     window.location.reload();
   });
 });
