@@ -351,7 +351,7 @@ $(document).ready(function () {
     const styledPrintContents =
       "<style>@media print { " +
       "table.reports { border-collapse: collapse; width: 100%; } " +
-      "table.reports th, table.reports td { border: 1px solid black; padding: 15px;  font-size: 15px;} " +
+      "table.reports th, table.reports td { border: 1px solid black; padding: 2px;  font-size: 20px;} " +
       "table.reports th { background-color: #f2f2f2; } " +
       "div.border table { border: 1px solid black; } " +
       "}</style>" +

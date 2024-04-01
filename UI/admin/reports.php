@@ -29,14 +29,7 @@
         text-align: right;
     }
 
-    @media print {
-        .print-table {
-            border: 1px solid #000;
-            /* Add border */
-            padding: 10px;
-            /* Add padding for better readability */
-        }
-    }
+    
 </style>
 <div class="main-wrapper">
     <?php include ('layouts/header.php'); ?>
@@ -204,7 +197,7 @@
 
                         <div class="row border border-dark" style="margin-left: 0; margin-right: 0;">
                             <div class="col-4 p-0">
-                                <div class=" border border-dark text-center  " style="height: 289px">
+                                <div class=" border border-dark text-center  "  style="height: 289px" id="emong_box"  >
                                     <div class="font-weight-bold d-inline-block">EMONG</div>
 
                                 </div>
@@ -412,7 +405,7 @@
                                 </table>
                             </div>
                             <div class="col-4 p-0">
-                                <div class=" border border-dark text-center  " style="height: 289px">
+                                <div class=" border border-dark text-center  " style="height: 289px" id="emong_box">
 
                                 </div>
                                 <div></div>
