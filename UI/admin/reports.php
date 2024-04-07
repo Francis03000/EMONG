@@ -34,7 +34,9 @@
     <?php include ('layouts/sidebar.php'); ?>
     <div class="page-wrapper">
         <div class="content container-fluid" id="container_color">
+            <div class="row " id="sales_contain">
 
+            </div>
             <div class="card" style="margin-top:2%;" id="reportDetails">
                 <div class="card-header">
                     <div class="row">
@@ -44,6 +46,9 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <button class="btn btn-success back-button1">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped reports table-striped table-success"
                             id="data_table">
@@ -248,64 +253,64 @@
                                     <tbody>
                                         <tr data-denomination="1000">
                                             <td class="col-4 p-0">1000.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="onek"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="onekAm"
+                                                    class="text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="500">
                                             <td class="col-4 p-0">500.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="fiveh"
-                                                    class=" text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="fivehAm"
+                                                    class=" text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="200">
                                             <td class="col-4 p-0">200.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="twoh"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="twohAm"
+                                                    class="text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="100">
                                             <td class="col-4 p-0">100.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="oneh"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="onehAm"
+                                                    class="text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="50">
                                             <td class="col-4 p-0">50.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="fiftyp"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="fiftypAm"
+                                                    class="text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="20">
                                             <td class="col-4 p-0">20.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="twentyp"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="twentypAm"
+                                                    class="text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="10">
                                             <td class="col-4 p-0">10.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="tenp"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="tenpAm"
+                                                    class="text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="5">
                                             <td class="col-4 p-0">5.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="fivep"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="fivepAm"
+                                                    class="text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="1">
                                             <td class="col-4 p-0">1.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="onep"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="onepAm"
+                                                    class="text-center denominationAm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
@@ -313,7 +318,7 @@
                                         <tr>
                                             <td colspan="2" class="font-weight-bold">AM Total</td>
 
-                                            <td class="total-col-4 p-0 amount font-weight-bold">0.00</td>
+                                            <td class="total-col-4 p-0 amount font-weight-bold" id="amTotal">0.00</td>
                                         </tr>
 
 
@@ -330,64 +335,64 @@
                                     <tbody>
                                         <tr data-denomination="1000">
                                             <td class="col-4 p-0">1000.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="onek"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="onekPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="500">
                                             <td class="col-4 p-0">500.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="fiveh"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="fivehPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="200">
                                             <td class="col-4 p-0">200.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="twoh"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="twohPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="100">
                                             <td class="col-4 p-0">100.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="oneh"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="onehPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="50">
                                             <td class="col-4 p-0">50.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="fiftyp"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="fiftypPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="20">
                                             <td class="col-4 p-0">20.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="twentyp"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="twentypPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="10">
                                             <td class="col-4 p-0">10.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="tenp"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="tenpPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="5">
                                             <td class="col-4 p-0">5.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="fivep"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="fivepPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
                                         <tr data-denomination="1">
                                             <td class="col-4 p-0">1.00</td>
-                                            <td class="col-4 p-0"><input type="number" id="onep"
-                                                    class="text-center denomination" style="width: 100%;" value="0">
+                                            <td class="col-4 p-0"><input type="number" id="onepPm"
+                                                    class="text-center denominationPm" style="width: 100%;" value="0">
                                             </td>
                                             <td class="col-4 p-0 amount">0.00</td>
                                         </tr>
@@ -395,7 +400,7 @@
                                         <tr>
                                             <td colspan="2" class="font-weight-bold">PM Total</td>
 
-                                            <td class="total-col-4 p-0 amount font-weight-bold">0.00</td>
+                                            <td class="total-col-4 p-0 amount font-weight-bold" id="pmTotal">0.00</td>
                                         </tr>
 
 

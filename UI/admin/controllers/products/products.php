@@ -12,6 +12,14 @@ if (isset($_GET['getData'])) {
         $res[] = $datass;
     }
     echo json_encode($res);
+} else if (isset($_GET['getData1'])) {
+    $DBCRUDAPI->select("products", "*");
+    $data = $DBCRUDAPI->sql;
+    $res = array();
+    while ($datass = mysqli_fetch_assoc($data)) {
+        $res[] = $datass;
+    }
+    echo json_encode($res);
 } else {
     if (isset($_POST['addNew'])) {
         $product_name = htmlspecialchars($_POST["product_name"]);

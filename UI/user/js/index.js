@@ -78,7 +78,6 @@ $(document).ready(function () {
         let newData = JSON.parse(data);
         let hasAM = false;
         let hasPM = false;
-        // Iterate through the returned data
         newData.forEach((product) => {
           if (product.am_pm === "AM") {
             hasAM = true;
@@ -188,6 +187,7 @@ $(document).ready(function () {
         total_plantsa: $("#total_plancha").val(),
         bo: $("#bo").val(),
         gas: $("#gas").val(),
+        expenses: $("#expenses").val(),
         sales_total: totalAmount,
         rider_commission: rider_commission.toFixed(0),
         owner_commission: owner_commission.toFixed(0),

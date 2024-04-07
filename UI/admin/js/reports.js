@@ -21,18 +21,59 @@ $(document).ready(function () {
     });
   });
 
-  let sampleArray = [];
-  getAllData();
-  function getAllData() {
-    sampleArray = [];
+  getAllData1();
+  function getAllData1() {
+    $.get({
+      url: "controllers/products/products.php",
+      data: { getData1: "getData1" },
+      success: function (data) {
+        let newData = JSON.parse(data);
+        let sales_contain = $("#sales_contain");
+        newData.forEach((product, i) => {
+          let product_name = product.product_name;
+          let product_price = product.product_price;
+          let item_per_plantsa = product.item_per_plantsa;
+          let product_id = product.product_id;
+
+          sales_contain.append(
+            `<div class="col-md-6 col-sm-6 col-lg-6 col-xl-4 product-item" data-id="${product_id}" data-name="${product_name}" data-item_per_plantsa="${item_per_plantsa}" data-price="${product_price}">
+              <div class="dash-widget dash-widget5">
+                <div class="dash-widget-info text-left d-inline-block">
+                  <span>${product_name}</span>
+                  <h3>₱${product_price}</h3>
+                </div>
+                <span class="float-right">
+                  <img src="assets/img/dash/regular.jpg" width="90" alt="" class="rounded-circle" />
+                </span>
+              </div>
+            </div>`
+          );
+        });
+      },
+    });
+  }
+
+  $("body").on("click", ".product-item", function (e) {
+    const name = $(e.currentTarget).data("name");
+    const price = $(e.currentTarget).data("price");
+    const item_per_plantsa = $(e.currentTarget).data("item_per_plantsa");
+
+    selectedProductId = $(e.currentTarget).data("id");
+    getReportDetails(selectedProductId);
+  });
+
+  function getReportDetails(selectedProductId) {
+    $("#sales_contain").hide();
+    $("#reportDetails").show();
+
+    $("#reportsTable").empty();
     $.get({
       url: "controllers/reports/reports.php",
-      data: { getData: "getData" },
+      data: { getReport: "getReport", product_id: selectedProductId },
       success: function (data) {
         let newData = JSON.parse(data);
         let table = $("#reportsTable");
         newData.forEach((reports, i) => {
-          sampleArray.push(reports);
           let tableRow = $("<tr>", { id: newData.id });
           $("<td>", { class: "text-wrap", html: i + 1 }).appendTo(tableRow);
           $("<td>", {
@@ -145,6 +186,7 @@ $(document).ready(function () {
     $("#total_cash_pm").text("₱");
   }
   $("#sales_report").hide();
+  $("#reportDetails").hide();
 
   function view(report_date, product_name, am_pm) {
     resetReportData();
@@ -234,6 +276,59 @@ $(document).ready(function () {
           $("#total_am_deduction").text(total_am_deduction);
 
           $("#total_cash_am").text("₱" + total_am_value);
+
+          $.get({
+            url: "controllers/reports/reports.php",
+            data: {
+              getDataDenominationAm: "getDataDenominationAm",
+              sales_id: reports.sales_id,
+            },
+            contentType: "application/json",
+            success: function (data) {
+              let newData = JSON.parse(data);
+              newData.forEach((denominationAm, i) => {
+                // $deduction = 1505;
+                // $onek = denominationAm.onek;
+                // $oneKtotal = $onek * 1000;
+                // if($onek){
+
+                // }
+                $("#onekAm").val(denominationAm.onek);
+                $("#fivehAm").val(denominationAm.fiveh);
+                $("#twohAm").val(denominationAm.twoh);
+                $("#onehAm").val(denominationAm.oneh);
+                $("#fiftypAm").val(denominationAm.fiftyp);
+                $("#twentypAm").val(denominationAm.twentyp);
+                $("#tenpAm").val(denominationAm.tenp);
+                $("#fivepAm").val(denominationAm.fivep);
+                $("#onepAm").val(denominationAm.onep);
+              });
+
+              updateAmountsAM();
+            },
+          });
+
+          function updateAmountsAM() {
+            var totalAmount = 0;
+            $(".denominationAm").each(function () {
+              var value = $(this).val().trim();
+              if (value === "") {
+                value = "0";
+              }
+
+              var pcs = parseInt(value);
+              pcs = Math.max(0, pcs);
+              $(this).val(pcs);
+
+              var denomination = parseInt(
+                $(this).closest("tr").data("denomination")
+              );
+              var amount = pcs * denomination;
+              $(this).closest("tr").find(".amount").text(amount.toFixed(2)); // Update amount with 2 decimal places
+              totalAmount += amount;
+            });
+            $("#amTotal").text(totalAmount.toFixed(2)); // Update total amount with 2 decimal places
+          }
         });
         $("#total_plantsa").text(totalPlantsa);
         $("#total_day_amount").text(totalDayAMount);
@@ -325,6 +420,53 @@ $(document).ready(function () {
           $("#total_pm_deduction").text(total_am_deduction);
 
           $("#total_cash_pm").text("₱" + total_am_value);
+
+          $.get({
+            url: "controllers/reports/reports.php",
+            data: {
+              getDataDenominationPm: "getDataDenominationPm",
+              sales_id: reports.sales_id,
+            },
+            contentType: "application/json",
+            success: function (data) {
+              let newData = JSON.parse(data);
+              newData.forEach((denominationAm, i) => {
+                $("#onekPm").val(denominationAm.onek);
+                $("#fivehPm").val(denominationAm.fiveh);
+                $("#twohPm").val(denominationAm.twoh);
+                $("#onehPm").val(denominationAm.oneh);
+                $("#fiftypPm").val(denominationAm.fiftyp);
+                $("#twentypPm").val(denominationAm.twentyp);
+                $("#tenpPm").val(denominationAm.tenp);
+                $("#fivepPm").val(denominationAm.fivep);
+                $("#onepPm").val(denominationAm.onep);
+              });
+
+              updateAmountsPM();
+            },
+          });
+
+          function updateAmountsPM() {
+            var totalAmount = 0;
+            $(".denominationPm").each(function () {
+              var value = $(this).val().trim();
+              if (value === "") {
+                value = "0";
+              }
+
+              var pcs = parseInt(value);
+              pcs = Math.max(0, pcs);
+              $(this).val(pcs);
+
+              var denomination = parseInt(
+                $(this).closest("tr").data("denomination")
+              );
+              var amount = pcs * denomination;
+              $(this).closest("tr").find(".amount").text(amount.toFixed(2)); // Update amount with 2 decimal places
+              totalAmount += amount;
+            });
+            $("#pmTotal").text(totalAmount.toFixed(2)); // Update total amount with 2 decimal places
+          }
         });
 
         $("#total_plantsa").text(totalPlantsa);
@@ -334,6 +476,14 @@ $(document).ready(function () {
         $("#total_day_bo").text(totalBo);
       },
     });
+  }
+  $(".back-button1").click(function () {
+    backToMenu1();
+  });
+
+  function backToMenu1() {
+    $("#sales_contain").show();
+    $("#reportDetails").hide();
   }
   $(".back-button").click(function () {
     backToMenu();

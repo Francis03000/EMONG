@@ -19,6 +19,7 @@ if (isset($_GET['getData'])) {
         $total_plantsa = htmlspecialchars($_POST["total_plantsa"]);
         $bo = htmlspecialchars($_POST["bo"]);
         $gas = htmlspecialchars($_POST["gas"]);
+        $expenses = htmlspecialchars($_POST["expenses"]);
         $sales_total = htmlspecialchars($_POST["sales_total"]);
         $rider_commission = htmlspecialchars($_POST["rider_commission"]);
         $owner_commission = htmlspecialchars($_POST["owner_commission"]);
@@ -30,6 +31,7 @@ if (isset($_GET['getData'])) {
             'total_plantsa' => $total_plantsa,
             'bo' => $bo,
             'gas' => $gas,
+            'expenses' => $expenses,
             'sales_total' => $sales_total,
             'rider_commission' => $rider_commission,
             'owner_commission' => $owner_commission,

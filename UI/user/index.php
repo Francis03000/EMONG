@@ -80,6 +80,14 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="product_price" class="col-form-label col-md-4">Expenses</label>
+                        <div class="col-md-8">
+                            <input type="number" class="form-control" id="expenses" value="0" name="expenses"
+                                placeholder="Expenses">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="product_price" class="col-form-label col-md-4 font-weight-bold">Total</label>
                         <div class="col-md-8">
                             <p id="totalAmount" class=" font-weight-bold"></p>
