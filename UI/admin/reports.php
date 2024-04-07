@@ -22,14 +22,12 @@
     }
 
     . {
-        height: 20px;
+        height: 10px;
     }
 
     .text-right {
         text-align: right;
     }
-
-    
 </style>
 <div class="main-wrapper">
     <?php include ('layouts/header.php'); ?>
@@ -122,14 +120,14 @@
                             </div>
 
                         </div>
-                        <div class="">
+                        <div class="" style="margin-top: 20px">
                             <div class="table-responsive text-center">
                                 <table class="reports " style="width: 100%; ">
                                     <thead>
                                         <tr>
                                             <th rowspan="2">DELIVERIES</th>
                                             <th rowspan="2">DATE NG MASA</th>
-                                            <th colspan=" 3">NO. OF PRODUCTION FOR SALE</th>
+                                            <th colspan="3">NO. OF PRODUCTION FOR SALE</th>
                                             <th colspan="2">B.O.</th>
                                             <th colspan="2">SOLD</th>
                                             <th colspan="2">PESO VALUE</th>
@@ -197,7 +195,7 @@
 
                         <div class="row border border-dark" style="margin-left: 0; margin-right: 0;">
                             <div class="col-4 p-0">
-                                <div class=" border border-dark text-center  "  style="height: 289px" id="emong_box"  >
+                                <div class=" border border-dark text-center  " style="height: 200px" id="emong_box">
                                     <div class="font-weight-bold d-inline-block">EMONG</div>
 
                                 </div>
@@ -405,7 +403,7 @@
                                 </table>
                             </div>
                             <div class="col-4 p-0">
-                                <div class=" border border-dark text-center  " style="height: 289px" id="emong_box">
+                                <div class=" border border-dark text-center  " style="height: 200px" id="emong_box">
 
                                 </div>
                                 <div></div>
@@ -431,21 +429,24 @@
                                             <td style="width: 50%"></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" class="text-right" style="height: 23px;"></td>
+                                            <td colspan="2" class="text-right" id="blank_person" style="height: 23px;">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td style="width: 50%">CHECKED BY: </td>
                                             <td style="width: 50%"></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" class="text-right" style="height: 23px;"></td>
+                                            <td colspan="2" class="text-right" id="blank_person" style="height: 23px;">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td style="width: 50%">APPROVED BY: </td>
                                             <td style="width: 50%"></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" class="text-right" style="height: 23px;"></td>
+                                            <td colspan="2" class="text-right" id="blank_person" style="height: 23px;">
+                                            </td>
                                         </tr>
 
                                     </tbody>
